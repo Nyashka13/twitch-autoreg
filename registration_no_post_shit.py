@@ -256,7 +256,7 @@ class Registrtaion:
         i=0
         while True:
             try:
-                send_captcha = requests.get("https://rucaptcha.com/in.php?key="+rucaptcha_key+"&method=funcaptcha&publickey="+self.caps_token+"&surl=https://client-api.arkoselabs.com&pageurl=https://www.twitch.tv/signup?no-mobile-redirect=true&json=1",proxies=self.proxy,timeout=timeout)
+                send_captcha = requests.get("https://api.captcha.guru/in.php?key="+rucaptcha_key+"&method=funcaptcha&publickey="+self.caps_token+"&surl=https://client-api.arkoselabs.com&pageurl=https://www.twitch.tv/signup?no-mobile-redirect=true&json=1",proxies=self.proxy,timeout=timeout)
                 break
             except:
                 if i>retries:
@@ -272,7 +272,7 @@ class Registrtaion:
             time.sleep(5)
             print("Ожидаю капчу.")
             try:
-                recived_captcha = requests.get("https://rucaptcha.com/res.php?key="+rucaptcha_key+"&action=get&id="+captcha_id+"&json=1",proxies=self.proxy,timeout=timeout)
+                recived_captcha = requests.get("https://api.captcha.guru/res.php?key="+rucaptcha_key+"&action=get&id="+captcha_id+"&json=1",proxies=self.proxy,timeout=timeout)
             except:
                 continue
             if (recived_captcha.json()["request"] == "ERROR_CAPTCHA_UNSOLVABLE"):
